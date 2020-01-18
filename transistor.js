@@ -14,91 +14,17 @@ window.onload = function(){
 // Цвета для canvas берутся из html документа (можно задать цвета этим переменным)
 const vahPointFill = document.getElementById('vahPointFill').style.color,
       vahPointBorder = document.getElementById('vahPointBorder').style.color,
-      wires = '#333',
-      border ='#333',
-       text = "#888",
+      wires = document.getElementById('wires').style.color,//'#333',
+      border = document.getElementById('border').style.color,//'#333',
+      text = document.getElementById('text').style.color,//"#888",
       vahAxes = document.getElementById('vahAxes').style.color,
       vahLine = document.getElementById('vahLine').style.color,
-      holes_pp = document.getElementById('holes_pp').style.color,
-      holes_pp_border = document.getElementById('holes_pp_border').style.color,
-      holes_pn = document.getElementById('holes_pn').style.color,
-      holes_pn_border = document.getElementById('holes_pn_border').style.color,
-      electrons_nn = document.getElementById('electrons_nn').style.color,
-      electrons_nn_border = document.getElementById('electrons_nn_border').style.color,
-      electrons_np = document.getElementById('electrons_np').style.color,
-      electrons_np_border = document.getElementById('electrons_np_border').style.color,
-      opz_lines = document.getElementById('opz_lines').style.color,
-      fermi_level = document.getElementById('fermi_level').style.color,
-      Eg_border = document.getElementById('Eg_border').style.color,
-      Eg_fill = document.getElementById('Eg_fill').style.color;
-
-
-
-// Рисует ВАХ s=slider.value
-function VoltAmper(Ugs)
-{/*
-    var canv = document.getElementById('canvas2');
-    var c = canv.getContext('2d');
-    c.clearRect(0,0,canv.width,canv.height)
-
-    //Линия y=exp(x) задается
-    c.beginPath();
-    for(let i =0; i<150*2.5-200;i++)
-    {
-        let x=i;
-        let y=-Math.exp((i-150)/8)+370;
-        c.moveTo(x,y);
-        x++;
-        y=-Math.exp((x-150)/8)+370;
-        c.lineTo(x,y);
-    }
-    for(let i =150*2.5-200; i<canv.width;i++)
-    {
-        let x=i;
-        let y=-Math.exp((i-200)/10)+350;
-        c.moveTo(x,y);
-        x++;
-        y=-Math.exp((x-200)/10)+350;
-        c.lineTo(x,y);
-    }
-    c.lineWidth ="5"
-    c.strokeStyle=vahLine;
-    c.stroke();
-
-    //Координатные оси рисуются
-    c.beginPath();
-    let ys = 350;
-    c.moveTo(150*2.5-200,   0)
-    c.lineTo(150*2.5-200, canv.height)
-    c.moveTo(0,   ys);
-    c.lineTo(canv.width, ys);
-    c.lineWidth ="5"
-    c.strokeStyle=vahAxes;
-    c.stroke();
-
-    // Анимированная точка
-    c.beginPath();
-    if(s>=150)
-    {
-        let xs = -(-s)*2.5-200
-        var pi = Math.PI;
-        var exp = - Math.exp((xs-200)/10)+350;
-        c.arc(xs,exp,10,0, 2*pi,true)
-    }
-    else
-    {
-        let xs = -(-s)*2.5-200
-        var pi = Math.PI;
-        var exp = - Math.exp((xs-150)/8)+370;
-        c.arc(xs,exp,10,0, 2*pi,true)
-    }
-    //Анимированная точка на графике цвет и заполнение
-    c.fillStyle = vahPointFill;
-    c.strokeStyle = vahPointBorder;
-    c.lineWidth = 1;
-    c.fill();
-    c.stroke();*/
-}
+      p_type = document.getElementById('p_type').style.color,
+      p_type_text = document.getElementById('p_type_text').style.color,
+      n_type = document.getElementById('n_type').style.color,
+      n_type_text = document.getElementById('n_type_text').style.color,
+      opz = document.getElementById('opz').style.color,
+      opz_text = document.getElementById('opz_text').style.color;
 
 
 // Рисует злнную картинку s=slider.value
@@ -120,37 +46,37 @@ ctx.beginPath();
     ctx.fillStyle = wires;
     ctx.fill();
 
-// Рисует p-type
+// Рисует p_type
 ctx.beginPath();
     ctx.moveTo(100,100);
     ctx.lineTo(w-200,100);
     ctx.lineTo(w-200,h);
     ctx.lineTo(100,h);
     ctx.closePath()
-    ctx.strokeStyle = holes_pp_border;
-    ctx.fillStyle = holes_pp;
+    ctx.strokeStyle = p_type_text;
+    ctx.fillStyle = p_type;
     ctx.fill();
 // Рисует n-type
 ctx.beginPath();
-    ctx.moveTo(100,190);
-    ctx.lineTo(w-200,190);
+    ctx.moveTo(100,200);
+    ctx.lineTo(w-200,200);
     ctx.lineTo(w-200,h);
     ctx.lineTo(100,h);
     ctx.closePath()
     ctx.lineWidth ="3";
-    ctx.strokeStyle = electrons_nn_border;
-    ctx.fillStyle = electrons_nn;
+    ctx.strokeStyle = n_type_text;
+    ctx.fillStyle = n_type;
     ctx.fill();
 // Рисует опз
 ctx.beginPath();
-    ctx.moveTo(100,190);
-    ctx.lineTo(w-200,190);
-    ctx.lineTo(w-200, 210-(-Ugs-Uds*0.9));
-    ctx.lineTo(100,210-(-Ugs-Uds/4));
+    ctx.moveTo(100,200);
+    ctx.lineTo(w-200,200);
+    ctx.lineTo(w-200, 245-(-Ugs-Uds*0.9));
+    ctx.lineTo(100,245-(-Ugs-Uds/4));
     ctx.closePath()
     ctx.lineWidth ="3";
-    ctx.strokeStyle = 'rgba(250,	235,	216, 0.6) ';
-    ctx.fillStyle =  ' rgba(250,	235,	216, 1) ';
+    ctx.strokeStyle = opz;
+    ctx.fillStyle = opz;
     ctx.fill();
     //ctx.stroke();
 ctx.beginPath();
@@ -182,34 +108,33 @@ ctx.beginPath();
     ctx.lineWidth ="4";
     ctx.strokeStyle = wires;
     ctx.stroke();
-ctx.beginPath();
-    ctx.moveTo(100,100);
-    ctx.lineTo(w-200,100);
-    ctx.lineTo(w-200,h);
-    ctx.lineTo(100,h);
-    ctx.closePath()
-    ctx.lineWidth ="6";
-    ctx.strokeStyle = border;
-    ctx.stroke();
   ctx.beginPath();
-    ctx.fillStyle = "#454545";
+    ctx.fillStyle = n_type_text;
     ctx.font= "20pt 'Open Sans', Arial, sans-serif"
-    ctx.fillText("n-канал", 120,240-(-Ugs-Uds*0.9))
+    ctx.fillText("n-канал", 120,280-(-Ugs-Uds*0.6))
   ctx.beginPath();
-    ctx.fillStyle = 'hotpink';
+    ctx.fillStyle = p_type_text;
     ctx.font= "18pt 'Open Sans', Arial, sans-serif"
-    ctx.fillText("p+", 120,150)
+    ctx.fillText("p+", 120,160)
   ctx.beginPath();
-    ctx.fillStyle = 'rgba(204,189,	170,1) ';
+    ctx.fillStyle = opz_text;
     ctx.font= "18pt 'Open Sans', Arial, sans-serif"
-    ctx.fillText("ОПЗ", w-280,210-(-Ugs/3-Uds*0.5))
+    ctx.fillText("ОПЗ", w-280,230-(-Ugs/3-Uds*0.5))
   ctx.beginPath();
     ctx.fillStyle = text;
     ctx.font= "18pt 'Open Sans', Arial, sans-serif"
     ctx.fillText("З (G)", 435,90)
     ctx.fillText("И (S)", 35,290)
     ctx.fillText("С (D)", w-170,290)
-    //Задает и рисует уровень ферми
+  ctx.beginPath();
+      ctx.moveTo(100,100);
+      ctx.lineTo(w-200,100);
+      ctx.lineTo(w-200,h);
+      ctx.lineTo(100,h);
+      ctx.closePath()
+      ctx.lineWidth ="6";
+      ctx.strokeStyle = border;
+      ctx.stroke();
 
 }
 function VoltAmper(s1,s2)
@@ -262,15 +187,21 @@ function VoltAmper(s1,s2)
         c.stroke();
     }
     c.fillStyle = vahLine;
+    c.strokeStyle = n_type_text;
+    c.lineWidth =0.3
     c.font= "18pt 'Times new roman', Arial, sans-serif"
     if (s1 == 0){
       c.fillText("Uзс = 0", 425,(-Math.log(455-20)*(60-(s1*60/250)))+450)
+      c.strokeText("Uзс = 0", 425,(-Math.log(455-20)*(60-(s1*60/250)))+450)
     }
     else if (s1 >= 245 ){
       c.fillText("Uзс = Uотс", 380,(-Math.log(455-20)*(60-(s1*60/250)))+450)
+      c.strokeText("Uзс = Uотс", 380,(-Math.log(455-20)*(60-(s1*60/250)))+450)
+
     }
     else{
       c.fillText("Uзс < 0", 425,(-Math.log(455-20)*(60-(s1*60/250)))+450)
+      c.strokeText("Uзс < 0", 425,(-Math.log(455-20)*(60-(s1*60/250)))+450);
     }
     c.fill();
     //Координатные оси рисуются
@@ -315,13 +246,9 @@ slider1.addEventListener('input', () => {
      //Анимированные графики запускаются
       VoltAmper(slider1.value,slider2.value);
       Semiconductor(slider1.value,slider2.value);
-      console.log(slider1.value)
 })
 slider2.addEventListener('input', () => {
      //Анимированные графики запускаются
       VoltAmper(slider1.value,slider2.value);
-      Semiconductor(slider1.value,slider2.value);
-      console.log(slider1.value)
-      text.textContext = slider1.value
-})
+      Semiconductor(slider1.value,slider2.value);})
 }
