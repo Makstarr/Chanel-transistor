@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+<!-- Анимация принципа работы и ВАХ
+     полевого транзистора с управляюшим p-n перехода
+     Напряжение изменяется слайдером
+     Цвета для анимации можно задать через HTML или напрямую
+     в соответсвующие переменные вверху js файла
+
+     Tarasov  2020  MISiS
+-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Полевой транзистор</title>
+
+    <!--href = путь к css файлу (навание если в одной директории с html)-->
+    <link rel="stylesheet" type="text/css" href="transistor.css">
+    <!--
+        src = путь к js файлу (навание если в одной директории с html)
+
+        Если анимация не запускается, попробуйте поместить эту строчку
+        перед закрытием тега  <body>
+    -->
+    <script src="transistor.js"></script>
+</head>
+<body>
+<!--Контейнер с двумя анимациями-->
+<div id="transistor">
+    <!--Зонная диаграмма и слайдер-->
+
+    <!--Зонная картинка. Высота и ширина связаны с картинкой. Не менять. -->
+    <div class="box" id="graph">
+      <div class="input">
+        <input id ="input-left" type="range" class="slider" min="00" max="250" value="0" aria-label="Voltage1"/>
+        <input id ="input-right" type="range" class="slider" min="0" max="200" value="0" aria-label="Voltage2"/>
+      </div>
+
+      <canvas class="canvas" id="canvas1" width="1200px" height="502px"></canvas>
+    </div>
+
+    <!-- ВАХ и подписи -->
+    <div class="box" id="vah">
+      <div class="text-label"style="top:0; left:0;">I<spans style="font-size:50%; font-family:'Open Sans'">С</span></div>
+      <div class="text-label"style="bottom:0; right:0;">U<spans style="font-size:50%; font-family:'Open Sans'">ИС</span></div>
+        <canvas class="canvas" id="canvas2" width="500px" height="500px"></canvas>
+    </div>
+
+
+    <!--Цвета для анимации-->
+    <div id='vahPointFill' style="color:palevioletred;"></div>
+    <div id='vahPointBorder' style="color:black;"></div>
+    <div id='vahAxes' style="color:black;"></div>
+    <div id='vahLine' style="color:skyblue;"></div>
+    <div id='electrons_nn' style="color:skyblue;"></div>
+    <div id='electrons_nn_border' style="color:black;"></div>
+    <div id='electrons_np' style="color:aqua;"></div>
+    <div id='electrons_np_border' style="color:black;"></div>
+    <div id='holes_pp' style="color:pink;"></div>
+    <div id='holes_pp_border' style="color:black;"></div>
+    <div id='holes_pn' style="color:hotpink;"></div>
+    <div id='holes_pn_border' style="color:#454545;"></div>
+    <style> #canvas1{background-color:none;}</style>
+    <div id='opz_lines' style="color:black;"></div>
+    <div id='fermi_level' style="color:black;"></div>
+    <div id='Eg_border' style="color:gray;"></div>
+    <div id='Eg_fill' style="color:floralwhite;"></div>
+</div>
+</body>
+</html>
